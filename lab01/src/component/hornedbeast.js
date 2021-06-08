@@ -1,4 +1,6 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Card from 'react-bootstrap/Card';
 
 class HornedBeast extends React.Component{
     constructor(props){
@@ -11,16 +13,29 @@ class HornedBeast extends React.Component{
     numOfVotes=() => {
         let value = this.state.poll;
         this.setState({poll:value+=1})
+
+        this.props.openIfTrue();
     }
 
     render(){
 
         return(
         <div>
-            <h2>{this.props.title}</h2>
-            <img src={this.props.img} alt={this.props.keyword} onClick={this.numOfVotes} />
-            <p>{this.props.description}</p>
-            <p> Number Of Votes : {this.state.poll } </p>
+            <Card style={{ width: '18rem' , height:'35rem' }}>
+             <Card.Img variant="top" src={this.props.img} onClick={this.numOfVotes} />
+             <Card.Body>
+             <Card.Title>{this.props.title}</Card.Title>
+             <Card.Text>
+              number of votes  = {this.state.poll}
+             </Card.Text>
+
+             <Card.Text>
+              {this.props.description}
+             </Card.Text>
+             {this.props.keyword},
+                   {this.props.horns}
+             </Card.Body>
+             </Card>
         </div>
         )
         }
