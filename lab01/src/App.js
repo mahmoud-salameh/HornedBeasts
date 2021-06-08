@@ -46,6 +46,8 @@ openIfTrue = ()=> {
                   title={imgData.title}
                   img={imgData.img}
                    description={imgData.description} 
+                   keyword={imgData.keyword}
+                   horns={imgData.horns}
                    />
                    
       </div>

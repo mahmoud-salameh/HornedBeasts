@@ -50,6 +50,8 @@ class Main extends React.Component{
                    description={items.description} 
                    img={items.image_url}
                    openIfTrue={this.props.openIfTrue}
+                   keyword={items.keyword}
+                   horns={items.horns}
 
                    />)
     })}
