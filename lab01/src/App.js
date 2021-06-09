@@ -4,7 +4,8 @@ import Footer from './component/footer';
 import Main from './component/main';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SelectedBeast from './component/SelectedBeast';
-import imgData from './component/data.json';
+import imgData from './component/data.json'
+
 
 
 
@@ -15,20 +16,19 @@ constructor(props) {
 
   super(props);
   this.state = {
-
-    beastArray: imgData, show: false,
+   slectetedProp: {},
+   show: false
 
   }
-}
-
-closeIfFalse = ()=> {
-  this.setState({show:false})
-}
-openIfTrue = ()=> {
-  this.setState({show:true})
-}
+};
 
 
+selectedModel = (allprops) =>{
+  this.setState({
+    show: !this.state.show,
+    slectetedProp: allprops
+  })
+}
 
 
 
@@ -38,16 +38,14 @@ openIfTrue = ()=> {
       <div>
         <Header />
 
-        <Main beastArray = {this.state.beastArray} openIfTrue={this.openIfTrue}/>
+        <Main imgData={imgData}
+        selectedModel={this.selectedModel}
+        />
 
         <Footer />
         <SelectedBeast show={this.state.show}
-                closeIfFalse={this.closeIfFalse}
-                  title={imgData.title}
-                  img={imgData.img}
-                   description={imgData.description} 
-                   keyword={imgData.keyword}
-                   horns={imgData.horns}
+               slectetedProp={this.state.slectetedProp}
+               selectedModel={this.selectedModel}
                    />
                    
       </div>
