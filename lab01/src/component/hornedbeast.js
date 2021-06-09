@@ -1,5 +1,5 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Card from 'react-bootstrap/Card';
 
 class HornedBeast extends React.Component{
@@ -13,16 +13,19 @@ class HornedBeast extends React.Component{
     numOfVotes=() => {
         let value = this.state.poll;
         this.setState({poll:value+=1})
-
-        this.props.openIfTrue();
     }
 
     render(){
 
         return(
         <div>
-            <Card style={{ width: '18rem' , height:'35rem' }}>
-             <Card.Img variant="top" src={this.props.img} onClick={this.numOfVotes} />
+            <Card style={{ width: '18rem' ,background: 'black', color: 'white' }}>
+             <Card.Img variant="top" 
+             onClick={()=>{
+                this.numOfVotes();
+                this.props.selectedModel(this.props);
+             }}
+             src={this.props.img} alt={this.props.title} />
              <Card.Body>
              <Card.Title>{this.props.title}</Card.Title>
              <Card.Text>
@@ -31,9 +34,10 @@ class HornedBeast extends React.Component{
 
              <Card.Text>
               {this.props.description}
+              {this.props.keyword} 
+                {this.props.horns}
              </Card.Text>
-             {this.props.keyword},
-                   {this.props.horns}
+             
              </Card.Body>
              </Card>
         </div>
