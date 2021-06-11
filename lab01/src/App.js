@@ -17,11 +17,16 @@ constructor(props) {
   super(props);
   this.state = {
    slectetedProp: {},
-   show: false
+   show: false,
+   allBeasts: imgData
 
   }
 };
 
+showbeasts = (call) =>{
+  let slectetedProp = imgData.find(beast=> beast.title ===call);
+  this.setState({ slectetedProp, showbeasts: true});
+}
 
 selectedModel = (allprops) =>{
   this.setState({
@@ -40,6 +45,7 @@ selectedModel = (allprops) =>{
 
         <Main imgData={imgData}
         selectedModel={this.selectedModel}
+        showbeasts={this.showbeasts}
         />
 
         <Footer />
