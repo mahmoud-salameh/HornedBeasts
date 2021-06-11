@@ -38,8 +38,28 @@ import Form from 'react-bootstrap/Form'
 
 
 class Main extends React.Component{
-    
 
+  constructor (props){
+
+    super(props)
+    this.state = {
+      cardArray: imgData,
+    }
+  }
+    
+  filter = (event)=> {
+    event.preventDefault();
+    let numOfHorns = event.target.value;
+    if (numOfHorns === "Any") {
+     this.setState( {cardArray: imgData})
+
+    }
+    else{
+      this.setState({
+      cardArray:imgData.filter( item => item.horns === Number(numOfHorns))
+    })}
+    
+  }
 
     
 
@@ -53,19 +73,19 @@ class Main extends React.Component{
           <Form>
             <Form.Group controlId="hornsSelected">
               <Form.Label>Number of horns</Form.Label>
-              <Form.Control as="select">
-                <option>Any</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>more than 3</option>
+              <Form.Control onChange = {this.filter} as="select">
+                <option value="Any">Any</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="100">100</option>
               </Form.Control>
             </Form.Group>
           </Form>
         
 
             {
-                imgData.map((beasts)=>{
+                this.state.cardArray.map((beasts)=>{
                     return(
                         <HornedBeast
                         title={beasts.title}
